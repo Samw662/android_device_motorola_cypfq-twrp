@@ -1,0 +1,29 @@
+# This init script for motorola cypfq
+
+import /init.recovery.qcom_decrypt.rc
+
+on boot
+	write /sys/fs/selinux/enforce 0
+	start health-hal-2-1
+	setprop sys.usb.config mtp,adb
+
+on init
+	setprop prepdecrypt.loglevel 2
+	setprop prepdecrypt.setpatch true
+	
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+	mount tmpfs tmpfs /tmp size=80%
+	chmod 0777 /system/bin/autorun.sh
+	start autorun
+	
+on post-fs
+	start boot-hal-1-1
+
+service autorun /system/bin/autorun.sh
+	user root
+	group root
+	disabled
+	oneshot
+	seclabel u:r:recovery:s0

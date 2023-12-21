@@ -188,6 +188,18 @@ BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Kernel module loading
 TW_LOAD_VENDOR_MODULES := "exfat.ko \
+            mmi-smbcharger-iio.ko \
+            mmi_relay.ko \
+            synaptics_tcm_core.ko \
+            synaptics_tcm_device.ko \
+            synaptics_tcm_diagnostics.ko \
+            synaptics_tcm_i2c.ko \
+            synaptics_tcm_recovery.ko \
+            synaptics_tcm_reflash.ko \
+            synaptics_tcm_spi.ko \
+            synaptics_tcm_testing.ko \
+            synaptics_tcm_touch.ko \
+            synaptics_tcm_zeroflash.ko \
             fpc1020_mmi.ko \
             ili9882_mmi.ko \
             mmi_annotate.ko \

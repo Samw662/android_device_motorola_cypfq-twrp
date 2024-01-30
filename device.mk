@@ -33,12 +33,14 @@ LOCAL_PATH := device/motorola/cypfq
 # A/B
 AB_OTA_PARTITIONS += \
     boot \
-    system \
-    vendor \
+    dtbo \
     product \
+    system \
+    system_ext \
+    vendor \
+    vendor_boot \
     vbmeta \
-    vbmeta_system \
-    dtbo
+    vbmeta_system
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -74,6 +76,11 @@ PRODUCT_PACKAGES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
+
+# QCOM Encryption
+PRODUCT_PACKAGES += \
+    qcom_decrypt \
+    qcom_decrypt_fbe
 
 # Blacklist
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \

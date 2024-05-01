@@ -17,42 +17,23 @@ Rear Camera 2 | 8mp
 Rear Camera 3 | 2mp
 
 ### Kernel Source
-From user 12 S2RYAS32.58-13-12-5-1-3 release-keys
+From user 12 S2RYAS32.58-13-12-5-1-6 release-keys
 
-### How to compile
-First repo init the twrp-12.1 tree:
+### What's working!? :D
+- Touch (it should works on both displays)
+- Backup && Restore
+- Wipe /data
+- CPU Temp 
+- Battery && Time
+- Brightness
+- MicroSD Card
+- Flashing zips
+- MTP && USB Mode Storage
 
-```
-mkdir ~/android/twrp-12.1
-cd ~/android/twrp-12.1
-repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
-mkdir -p .repo/local_manifests
-```
+### What ISN'T working!? D:
+- Decryption
+- Touch on custom roms (it works fine in stock rom)
 
-Then add to a local manifest (if you don't have .repo/local_manifest then make that directory and make a blank file and name it something like twrp.xml):
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest>
-  <project name="osm0sis/twrp_abtemplate" path="bootable/recovery/installer" remote="github" revision="master"/>
-  <project name="android_device_motorola_cypfq" path="device/motorola/cypfq" remote="TeamWin" revision="android-12.1"/>
-</manifest>
-```
+### See Wiki for build this source
 
-Now you can sync your source:
-
-```
-repo sync -j$(nproc --all)
-```
-
-To automatically make the TWRP installer zip, you need to import this commit in the build/make path: https://gerrit.twrp.me/c/android_build/+/5445
-
-Finally execute these:
-
-```
-. build/envsetup.sh
-export ALLOW_MISSING_DEPENDENCIES=true
-export LC_ALL=C
-lunch twrp_cypfq-eng
-mka bootimage -j$(nproc --all)
-```
